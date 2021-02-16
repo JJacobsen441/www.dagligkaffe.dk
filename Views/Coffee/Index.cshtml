@@ -1,0 +1,258 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<www.dagligkaffe.dk.Models.Coffee>
+@using www.dagligkaffe.dk.Common
+@{
+    if (ViewBag.Session.IsMobile == "false")
+    {
+        try
+        {
+
+            <div class="light_bg" style="margin: auto; width: 50%;">
+                <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="height: 250px;xborder: solid 3px #231F20;padding: 10px;">
+                    reklameplads
+                    <a href="https://www.doctormembrain.com">
+                        <img src="/doctormembrain_cover1.jpg" style="width:100%" />
+                    </a>
+                </div>
+                <br />
+                <div align="left" class="col-md-12 classname donate_content hide_phone">
+                    Donationer går udelukkende til kaffe!<br /><br />
+                </div>
+                <div class="col-md-12 donate_radio" style="">
+                    <div class="row col-md-12">
+                        <div class="col-md-8 hide_phone">
+                            <span class="classname hide_phone" style="color:#A4A4A4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tryk her]</span><br />
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_donations" />
+                                <input type="hidden" name="business" value="admin@dagligkaffe.dk" />
+                                <input type="hidden" name="currency_code" value="DKK" />
+                                <input type="hidden" name="amount" value="2" class="pay_amount" />
+                                <input class="floatleft_phone" style="width:50%" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                                <img class="xfloatleft" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="radio" name="don_radio" class="two radio floatleft" value="2" checked="checked" /><span class="classname floatleft" style="color:#A4A4A4;">. . . . . . . . 2 kr</span><br />
+                            <input type="radio" name="don_radio" class="five radio floatleft" value="5" /><span class="classname floatleft" style="color:#A4A4A4;">. . . . . . . . 5 kr</span><br />
+                            <input type="radio" name="don_radio" class="ten radio floatleft" value="10" /><span class="classname floatleft" style="color:#A4A4A4;">. . . . . . . . 10 kr</span><br />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="padding: 10px;border: solid 1px #CED4DA">
+                    <span class="bold">Her drikker vi kaffe!</span><br /><br />
+                    dagens friske kaffe:<br />
+                    <span class="bold">af</span> @Model[0].Author<br />
+                    @Model[0].Storie<br />
+                    @{
+                        string beans = Model[0].Bean == 0 ? "bønner" : Model[0].Bean == 1 ? "bønne" : "bønner";
+                        string index = "" + @Model[0].Id;
+                    }
+                    <img src="/bean1.jpg" style="width:15px;height:15px;margin-bottom:3px;" /> <span id="f_span">@Model[0].Bean</span> @beans <span onclick="addBean('f_span', '@index')"><i class="far fa-thumbs-up"></i></span>
+                    <br /><br />
+
+                    den bedste kaffe:<br />
+                    <span class="bold">af</span> @Model[1].Author<br />
+                    @Model[1].Storie<br />
+                    @{
+                        string beans1 = Model[1].Bean == 0 ? "bønner" : Model[1].Bean == 1 ? "bønne" : "bønner";
+                        string index1 = "" + @Model[1].Id;
+                    }
+                    <img src="/bean1.jpg" style="width: 15px;height: 15px;margin-bottom: 3px;" /> <span id="b_span">@Model[1].Bean</span> @beans1 <span onclick="addBean('b_span', '@index1')"><i class="far fa-thumbs-up"></i></span>
+                    <br /><br />
+
+                    dagens sorte kaffe:<br />
+                    <span class="bold">af</span> @Model[2].Author<br />
+                    @Model[2].Storie<br />
+                    @{
+                        string beans2 = Model[2].Bean == 0 ? "bønner" : Model[2].Bean == 1 ? "bønne" : "bønner";
+                        string index2 = "" + @Model[2].Id;
+                    }
+                    <img src="/bean1.jpg" style="width: 15px;height: 15px;margin-bottom: 3px;" /> <span id="s_span">@Model[2].Bean</span> @beans2 <span onclick="addBean('s_span', '@index2')"><i class="far fa-thumbs-up"></i></span>
+
+                </div>
+                @using (Html.BeginRouteForm("Message", FormMethod.Post))
+                {
+                    <br />
+                    <div class="row">
+                        <div class="col-md-10" style="padding-top:8px">
+                            <span class="bold addpaddingleft">
+                                del en kop kaffe..
+                            </span>
+                            <span id="counter">300</span> tegn tilbage
+                            <br />
+                            <input type="text" class="form-control" id="name" name="name" placeholder="dit dæknavn.." />
+                            <textarea id="message" class="form-control" cols="20" rows="2" name="message" placeholder="Skriv en kaffedelisk historie her.."></textarea>
+                        </div>
+                        <div class="col-md-2 removepaddingleft" style="padding-top:8px">
+                            <br />
+                            Del en kop<br />
+                            kaffe..<br />
+                            <button type="submit" id="submit" class="btn xbtn_black" style="height:80px;width:100%">
+                                <img src="/coffee1.jpg" style="width:100%;height:100%;" />
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        catch (Exception e)
+        {
+            ErrorHandler err = new ErrorHandler();
+            string s = err.FormatError(e);
+            string subject = "Fejl i front, Coffee(DESK)";
+            string body = s;
+            Admin.Notification.Run(Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), subject, body);
+        }
+    }
+    else
+    {
+        try
+        {
+
+            @*<div class="light_bg" style="margin: auto; width: 50%;">*@
+                <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="height: 170px;xborder: solid 3px #231F20;padding: 10px;">
+                    reklameplads
+                    <a href="https://www.doctormembrain.com">
+                        <img src="/doctormembrain_cover1.jpg" style="width:100%" />
+                    </a>
+                </div>
+                <br />
+                <br />
+                <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="padding: 10px;border: solid 1px #CED4DA">
+                    <span class="bold">Her drikker vi kaffe!</span><br /><br />
+                    dagens friske kaffe:<br />
+                    <span class="bold">af</span> @Model[0].Author<br />
+                    @Model[0].Storie<br />
+                    @{
+                        string beans = Model[0].Bean == 0 ? "bønner" : Model[0].Bean == 1 ? "bønne" : "bønner";
+                        string index = "" + @Model[0].Id;
+                    }
+                    <img src="/bean1.jpg" style="width:15px;height:15px;margin-bottom:3px;" /> <span id="f_span">@Model[0].Bean</span> @beans <span onclick="addBean('f_span', '@index')"><i class="far fa-thumbs-up"></i></span>
+                    <br /><br />
+
+                    den bedste kaffe:<br />
+                    <span class="bold">af</span> @Model[1].Author<br />
+                    @Model[1].Storie<br />
+                    @{
+                        string beans1 = Model[1].Bean == 0 ? "bønner" : Model[1].Bean == 1 ? "bønne" : "bønner";
+                        string index1 = "" + @Model[1].Id;
+                    }
+                    <img src="/bean1.jpg" style="width: 15px;height: 15px;margin-bottom: 3px;" /> <span id="b_span">@Model[1].Bean</span> @beans1 <span onclick="addBean('b_span', '@index1')"><i class="far fa-thumbs-up"></i></span>
+                    <br /><br />
+
+                    dagens sorte kaffe:<br />
+                    <span class="bold">af</span> @Model[2].Author<br />
+                    @Model[2].Storie<br />
+                    @{
+                        string beans2 = Model[2].Bean == 0 ? "bønner" : Model[2].Bean == 1 ? "bønne" : "bønner";
+                        string index2 = "" + @Model[2].Id;
+                    }
+                    <img src="/bean1.jpg" style="width: 15px;height: 15px;margin-bottom: 3px;" /> <span id="s_span">@Model[2].Bean</span> @beans2 <span onclick="addBean('s_span', '@index2')"><i class="far fa-thumbs-up"></i></span>
+
+                </div>
+                @using (Html.BeginRouteForm("Message", FormMethod.Post))
+                {
+                    <br />
+                    <div class="col-md-12 removepaddingsides">
+
+                    
+                        <div class="col-md-10 removepaddingsides" style="padding-top:8px">
+                            <span id="counter">300</span> tegn tilbage
+                            <br />
+                            <input type="text" class="form-control" id="name" name="name" placeholder="dit dæknavn.." />
+                            <textarea id="message" class="form-control" cols="20" rows="2" name="message" placeholder="Skriv en kaffedelisk historie her.."></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="padding-top:8px">
+                                <span class="bold addpaddingleft">
+                                    <br />
+                                    Del en kop <br />
+                                    kaffe..
+                                </span>
+                            </div>
+                            <div class="col" style="padding-top:8px">
+                                <button type="submit" id="submit" class="btn xbtn_black" style="height:70px;width:100%">
+                                    <img src="/coffee1.jpg" style="width:70px;height:70px;" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                }
+            @*</div>*@
+        }
+        catch (Exception e)
+        {
+            ErrorHandler err = new ErrorHandler();
+            string s = err.FormatError(e);
+            string subject = "Fejl i front, Coffee(MOB)";
+            string body = s;
+            Admin.Notification.Run(Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), subject, body);
+        }
+    }
+}
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('i').css('cursor', 'pointer');
+        //alert('hep');
+        var oldVal = '';
+        $('#message').on('change keyup paste', function () {
+            var currentVal = $(this).val();
+            if (currentVal == oldVal) {
+                return; //check to prevent multiple simultaneous triggers
+            }
+
+            oldVal = currentVal;
+            //action to be performed on textarea changed
+
+            var str = $(this).val();
+            if (str.length > 300)
+                $(this).val(str.substr(0, 300));
+            $('#counter').text('' + (300 - str.length));
+            //alert('ok');
+        });
+        $('.radio').click(function () {
+            var val = $(this).val();
+            $('.pay_amount').val(val);
+            //alert(val);
+        });
+    });
+    function addBean(to_update, index) {
+        var path = "/Coffee/AddBean";
+        var data = {};
+        data.index = '' + index;
+
+        var me = $('#' + to_update);
+        //alert($(me).text());
+        addbean_Ajax(path, data, me)
+    }
+    function addbean_Ajax(path, data_in, me) {
+        var data = data_in;//JSON.stringify(data_in)
+        $.ajax({
+            url: path,
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",//"application/json; charset=utf-8",
+            dataType: "json",
+            data: data,
+            success: function (result) {
+                if (result.success) {
+                    alert('tak :)');
+                    $(me).text(result.updated);
+                }
+            },
+            error: function (er) {
+                alert("Something went wrong, sorry!");
+                //return -1;
+            }
+        });
+    }
+</script>

@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<www.dagligkaffe.dk.Models.Coffee>
+@using www.dagligkaffe.dk.Common
+@{
+    if (ViewBag.Session.IsMobile == "false")
+    {
+        try
+        {
+            <div>Denne side findes ikke.</div>
+        }
+        catch (Exception e)
+        {
+            ErrorHandler err = new ErrorHandler();
+            string s = err.FormatError(e);
+            string subject = "Fejl i front, Coffee(MOB)";
+            string body = s;
+            Admin.Notification.Run(Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), subject, body);
+        }
+
+    }
+    else
+    {
+        try
+        {
+
+            @*<div class="light_bg" style="margin: auto; width: 50%;">*@
+            <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="height: 170px;xborder: solid 3px #231F20;padding: 10px;">
+                reklameplads
+                <a href="https://www.doctormembrain.com">
+                    <img src="/doctormembrain_cover1.jpg" style="width:100%" />
+                </a>
+            </div>
+            <br />
+            <div align="left" class="col-md-12 classname donate_content hide_phone">
+                Donationer går udelukkende til kaffe!<br /><br />
+            </div>
+            <div class="col-md-12 donate_radio" style="">
+                <div class="row">
+
+                    <div class="col">
+                        <br />
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_donations" />
+                            <input type="hidden" name="business" value="admin@dagligkaffe.dk" />
+                            <input type="hidden" name="currency_code" value="DKK" />
+                            <input type="hidden" name="amount" value="2" class="pay_amount" />
+                            <input class="floatleft_phone" style="width:50%" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                            <img class="xfloatleft" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                        </form>
+                    </div>
+                    <div class="col">
+                        <input type="radio" name="don_radio" class="two radio floatleft" value="2" checked="checked" /><span class="classname floatleft" style="color:#A4A4A4;">. . . . . . . . 2 kr</span><br />
+                        <input type="radio" name="don_radio" class="five radio floatleft" value="5" /><span class="classname floatleft" style="color:#A4A4A4;">. . . . . . . . 5 kr</span><br />
+                        <input type="radio" name="don_radio" class="ten radio floatleft" value="10" /><span class="classname floatleft" style="color:#A4A4A4;">. . . . . . . . 10 kr</span><br />
+                    </div>
+                </div>
+                
+            </div>
+            @*</div>*@
+        }
+        catch (Exception e)
+        {
+            ErrorHandler err = new ErrorHandler();
+            string s = err.FormatError(e);
+            string subject = "Fejl i front, Coffee(MOB)";
+            string body = s;
+            Admin.Notification.Run(Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), subject, body);
+        }
+
+    }
+}
+<script>
+    $(document).ready(function () {
+        $('.radio').click(function () {
+            var val = $(this).val();
+            $('.pay_amount').val(val);
+            //alert(val);
+        });
+    });
+</script>

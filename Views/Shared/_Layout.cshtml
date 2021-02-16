@@ -1,0 +1,134 @@
+﻿@using www.dagligkaffe.dk.Common
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>www.dagligkaffe.dk</title>
+    @*<title>@ViewData["Title"] www.dagligkaffe.dk</title>*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body class="light_bg">
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+
+
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">www.dagligkaffe.dk</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Coffee" asp-action="History">Kaffens historie..</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Coffee" asp-action="Donate">Doner</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </header>*@
+    @{
+        if (ViewBag.Session.IsMobile == "false")
+        {
+
+
+            <header class="white_bg">
+                <div class="container white_bg">
+                    <div class="col-md-12 white_bg" style="margin: auto; width: 50%;">
+                        <div class="row">
+                            <a class="navbar-brand dark" asp-area="" asp-controller="Home" asp-action="Index">www.dagligkaffe.dk</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Coffee" asp-action="History">Kaffens historie..</a>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            </header>
+        }
+        else
+        {
+            <header class="white_bg">
+                <div class="container white_bg">
+                    <a class="nav-link dark" style="font-size:20px;" asp-area="" asp-controller="Home" asp-action="Index">www.dagligkaffe.dk</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Coffee" asp-action="History">Kaffens historie..</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Coffee" asp-action="Donate">Doner</a>
+                    
+                </div>
+                <hr />
+            </header>
+        }
+    }
+    <div class="loading"><span class="centered" style="zfont-size: 600%;display:none;"></span></div>
+    <div class="container ">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - @Settings.Basic.SITE_NAME()
+        </div>
+    </footer>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>*@
+    @RenderSection("Scripts", required: false)
+</body>
+@{
+    string is_mob = ViewBag.Session.IsMobile;
+    string route_a = @Url.RouteUrl("IsMobile");
+}
+
+@Html.Hidden("is_mob", is_mob)
+@Html.Hidden("route_a", route_a)
+</html>
+
+<script>
+    $(document).ready(function () {
+        var path = '@route_a';
+        var data = {};
+        data.width = $(window).width();
+        mobile_Ajax(path, data);
+    });
+    function mobile_Ajax(path, data_in) {
+        var data = data_in;
+        $.ajax({
+            url: path,
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",//"application/json; charset=utf-8",
+            dataType: "json",
+            data: data,
+            success: function (results) {
+                if (results.success) {
+                    var is_mob = $('#is_mob').val();
+                    if (is_mob == 'none') {
+                        //alert('hep');
+                        $('.loading').fadeIn(50);
+                        location.reload();
+                    }
+                    else {
+                        $('.loading').fadeOut(50);
+                    }
+                }
+                else
+                    alert('Der skete en fejl, beklager.');
+            },
+            error: function (er) {
+                //myalert("error1: " + er.responseText);
+                //$('.loading').fadeOut(400);
+            }
+        });
+    }
+</script>

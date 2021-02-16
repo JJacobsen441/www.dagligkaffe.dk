@@ -1,0 +1,135 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<www.dagligkaffe.dk.Models.Coffee>
+@using www.dagligkaffe.dk.Common
+@{
+    if (ViewBag.Session.IsMobile == "false")
+    {
+        try
+        {
+
+            <div class="light_bg" style="margin: auto; width: 50%;">
+                <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="height: 250px;xborder: solid 3px #231F20;padding: 10px;">
+                    reklameplads
+                    <a href="https://www.doctormembrain.com">
+                        <img src="/doctormembrain_cover1.jpg" style="width:100%" />
+                    </a>
+                </div>
+                <br />
+                <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="padding: 10px;border: solid 1px #CED4DA">
+                    <span class="bold">Kaffens historie!</span><br /><br />
+                    @{
+                        int counter = 0;
+                        foreach (Coffee c in Model)
+                        {
+                            string beans = c.Bean == 0 ? "bønner" : c.Bean == 1 ? "bønne" : "bønner";
+                            string index = "" + c.Id;
+
+                            <span class="bold">af</span> @c.Author<br />
+                            @c.Storie<br />
+
+                            <img src="/bean1.jpg" style="width:15px;height:15px;margin-bottom:3px;" /> <span id="f_span_@counter">@c.Bean</span> @beans <span onclick="addBean('f_span_' + @counter, '@index')"><i class="far fa-thumbs-up"></i></span>
+                            <br /><br />
+                            counter++;
+                        }
+                    }
+                </div>
+            </div>
+        }
+        catch (Exception e)
+        {
+            ErrorHandler err = new ErrorHandler();
+            string s = err.FormatError(e);
+            string subject = "Fejl i front, Coffee(MOB)";
+            string body = s;
+            Admin.Notification.Run(Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), subject, body);
+        }
+
+    }
+                        else
+    {
+        try
+        {
+
+            @*<div class="light_bg" style="margin: auto; width: 50%;">*@
+                <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="height: 170px;xborder: solid 3px #231F20;padding: 10px;">
+                    reklameplads
+                    <a href="https://www.doctormembrain.com">
+                        <img src="/doctormembrain_cover1.jpg" style="width:100%" />
+                    </a>
+                </div>
+                <br />
+                <div class="radius_top_left radius_top_right radius_bottom_left radius_bottom_right bg-white dark" style="padding: 10px;border: solid 1px #CED4DA">
+                    <span class="bold">Kaffens historie!</span><br /><br />
+                    @{
+                        int counter = 0;
+                        foreach (Coffee c in Model)
+                        {
+                            string beans = c.Bean == 0 ? "bønner" : c.Bean == 1 ? "bønne" : "bønner";
+                            string index = "" + c.Id;
+
+                            <span class="bold">af</span> @c.Author<br />
+                            @c.Storie<br />
+
+                            <img src="/bean1.jpg" style="width:15px;height:15px;margin-bottom:3px;" /> <span id="f_span_@counter">@c.Bean</span> @beans <span onclick="addBean('f_span_' + @counter, '@index')"><i class="far fa-thumbs-up"></i></span>
+                            <br /><br />
+                            counter++;
+                        }
+                    }
+                </div>
+            @*</div>*@
+        }
+        catch (Exception e)
+        {
+            ErrorHandler err = new ErrorHandler();
+            string s = err.FormatError(e);
+            string subject = "Fejl i front, Coffee(MOB)";
+            string body = s;
+            Admin.Notification.Run(Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), Settings.Basic.EMAIL_MAIL(), subject, body);
+        }
+
+    }
+}
+<script>
+    $(document).ready(function () {
+        //alert('hep');
+        $('i').css('cursor', 'pointer');
+    });
+    function addBean(to_update, index) {
+        var path = "/Coffee/AddBean";
+        var data = {};
+        data.index = '' + index;
+
+        var me = $('#' + to_update);
+        //alert($(me).text());
+        addbean_Ajax(path, data, me)
+    }
+    function addbean_Ajax(path, data_in, me) {
+        var data = data_in;//JSON.stringify(data_in)
+        $.ajax({
+            url: path,
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",//"application/json; charset=utf-8",
+            dataType: "json",
+            data: data,
+            success: function (result) {
+                if (result.success) {
+                    alert('tak :)');
+                    $(me).text(result.updated);
+                }
+            },
+            error: function (er) {
+                alert("Something went wrong, sorry!");
+                //return -1;
+            }
+        });
+    }
+</script>

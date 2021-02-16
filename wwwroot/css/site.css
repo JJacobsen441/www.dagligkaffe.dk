@@ -1,0 +1,252 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.white_bg {
+    background-color: #FFFFFF;
+}
+
+.white {
+    color: #FFFFFF;
+}
+
+.white_bdr {
+    border-color: #FFFFFF;
+}
+.light_bg {
+    background-color: #FAF9F7;
+}
+
+.light {
+    color: #FAF9F7;
+}
+
+.light_bdr {
+    border-color: #FAF9F7;
+}
+.dark_bg {
+    background-color: #231F20;
+}
+
+.dark {
+    color: #231F20;
+}
+
+.dark_bdr {
+    border-color: #231F20;
+}
+.bean_bg {
+    background-color: #CCCCCC;
+}
+
+.bean {
+    color: #CCCCCC;
+}
+
+.bean_bdr {
+    border-color: #CCCCCC;
+}
+
+.radius_top_left {
+    border-top-left-radius: 10px;
+}
+.radius_top_right {
+    border-top-right-radius: 10px;
+}
+.radius_bottom_left {
+    border-bottom-left-radius: 10px;
+}
+.radius_bottom_right {
+    border-bottom-right-radius: 10px;
+}
+.bold {
+    /*font-family: 'caviardreams_bold' !important;*/
+    font-weight: bold;
+}
+
+.btn_black {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 1px solid black;
+}
+
+.btn_black:hover {
+    background-color: #4E4E4E;
+    color: #FFFFFF;
+    border: 1px solid black;
+}
+
+.addpaddingsides {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.addpaddingtop {
+    padding-top: 10px;
+}
+
+.addpaddingbottom {
+    padding-bottom: 10px;
+}
+
+.addpaddingleft {
+    padding-left: 10px;
+}
+
+.addpaddingright {
+    padding-right: 10px;
+}
+
+.addpaddingall {
+    padding: 10px 10px 10px 10px;
+}
+
+.removepaddingtop {
+    padding-top: 0 !important;
+}
+
+.removepaddingbottom {
+    padding-bottom: 0 !important;
+}
+
+.removepaddingleft {
+    padding-left: 0 !important;
+}
+
+.removepaddingright {
+    padding-right: 0 !important;
+}
+
+.removepaddingsides {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
+
+.removemargintop {
+    margin-top: 0;
+}
+
+.removemarginbottom {
+    margin-bottom: 0;
+}
+
+.removemarginleft {
+    margin-left: 0;
+}
+
+.removemarginright {
+    margin-right: 0;
+}
+
+.removemarginsides {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.addmargintop {
+    margin-top: 10px;
+}
+
+.addmarginbottom {
+    margin-bottom: 10px;
+}
+
+.addmarginleft {
+    margin-left: 10px;
+}
+
+.addmarginright {
+    margin-right: 10px;
+}
+
+.addmarginsides {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.loading {
+    opacity: 0.8;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border: 2px solid #FFF;
+    color: #EEE;
+    background-color: #FFF;
+}

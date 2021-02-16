@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <basic>
+    <setting name="SITE_NAME">www.dagligkaffe.dk</setting>
+    <setting name="SITE_NAME_SHORT">dagligkaffe.dk</setting>
+    <setting name="SITE_NAME_FULL">https://www.dagligkaffe.dk</setting>
+    <setting name="SLOGAN">Her drikker vi kaffe..</setting>
+    <setting name="COMMENT">- del en kaffedelist historie fra dagligdagen!</setting>
+    <setting name="EMAIL_ADMIN">admin@dagligkaffe.dk</setting>
+    <setting name="EMAIL_MAIL">mail@dagligkaffe.dk</setting>
+    <setting name="EMAIL_NO_REPLY">no-reply@dagligkaffe.dk</setting>
+    <setting name="EMAIL_TEST">test@dagligkaffe.dk</setting>
+    <setting name="IP">80.161.50.61</setting>
+  </basic>
+</settings>
