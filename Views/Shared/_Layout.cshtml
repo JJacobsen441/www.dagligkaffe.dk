@@ -5,8 +5,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>www.dagligkaffe.dk</title>
+    <title>@Settings.Basic.SITE_NAME()</title>
     @*<title>@ViewData["Title"] www.dagligkaffe.dk</title>*@
+
+    <link rel="canonical" href="@Settings.Basic.SITE_NAME()" />
+    <meta name="description" content="@Settings.Basic.COMMENT()" />
+    <meta name="keywords" content="kaffe, dagligdag, sjov, social, hygge" />
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
