@@ -229,8 +229,8 @@ namespace www.dagligkaffe.dk.Controllers
 
                 //ok1 = DateTime.TryParse(date, culture, styles, out res_date);
                 //StringHelper.OnlyAlphanumeric(country, true, true, "", new char[0], out ok2);
-                StringHelper.OnlyAlphanumeric(name, true, true, "<br>", Characters.Name(), out ok3);
-                StringHelper.OnlyAlphanumeric(content, true, true, "<br>", Characters.All(true), out ok4);
+                StringHelper.OnlyAlphanumeric(name, true, true, "br", Characters.Name(), out ok3);
+                StringHelper.OnlyAlphanumeric(content, true, true, "br", Characters.All(true), out ok4);
                 if (!(ok3 && ok4))
                     return NotValid(name, content);
 
